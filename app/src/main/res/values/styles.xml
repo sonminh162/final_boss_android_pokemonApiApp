@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/navyBlueDark</item>
+        <item name="colorPrimaryDark">@color/navyBlueDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+<!--    android:fontFamily="sans-serif"-->
+<!--    android:textColor="@color/dark_blue"-->
+<!--    android:textSize="12sp"-->
+
+    <style name="font">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="number">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

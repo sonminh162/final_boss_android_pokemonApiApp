@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/hp"
+        style="@style/font"
+        android:text="@string/hp"
+        android:layout_marginTop="19dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/atk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/hp"
+        app:layout_constraintTop_toBottomOf="@id/hp"
+        android:layout_marginTop="8dp"
+        android:text="@string/atk"
+        style="@style/font"/>
+
+    <TextView
+        android:id="@+id/def"
+        style="@style/font"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/atk"
+        app:layout_constraintStart_toStartOf="@id/atk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/def"/>
+
+    <TextView
+        android:id="@+id/satk"
+        style="@style/font"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/def"
+        app:layout_constraintTop_toBottomOf="@id/def"
+        android:text="@string/satk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/sdef"
+        style="@style/font"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/satk"
+        app:layout_constraintStart_toStartOf="@id/satk"
+        android:text="@string/sdef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/spd"
+        android:layout_marginTop="8dp"
+        style="@style/font"
+        app:layout_constraintTop_toBottomOf="@id/sdef"
+        app:layout_constraintStart_toStartOf="@id/sdef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/spd"/>
+
+    <TextView
+        android:id="@+id/statSatk"
+        style="@style/number"
+        app:layout_constraintBottom_toBottomOf="@id/satk"
+        app:layout_constraintTop_toTopOf="@id/satk"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/satk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_000"/>
+
+    <TextView
+        android:id="@+id/statDef"
+        style="@style/number"
+        app:layout_constraintStart_toStartOf="@id/statSatk"
+        app:layout_constraintBottom_toBottomOf="@id/def"
+        app:layout_constraintTop_toTopOf="@id/def"
+        android:text="@string/_000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/statAtk"
+        android:text="@string/_000"
+        style="@style/number"
+        app:layout_constraintBottom_toBottomOf="@id/atk"
+        app:layout_constraintTop_toTopOf="@id/atk"
+        app:layout_constraintStart_toStartOf="@id/statSatk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/statHp"
+        style="@style/number"
+        app:layout_constraintBottom_toBottomOf="@id/hp"
+        app:layout_constraintTop_toTopOf="@id/hp"
+        app:layout_constraintStart_toStartOf="@id/statSatk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_000"/>
+
+    <TextView
+        android:id="@+id/statSdef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_000"
+        style="@style/number"
+        app:layout_constraintStart_toStartOf="@id/statSatk"
+        app:layout_constraintBottom_toBottomOf="@id/sdef"
+        app:layout_constraintTop_toTopOf="@id/sdef"/>
+
+    <TextView
+        android:id="@+id/statSpd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_000"
+        app:layout_constraintTop_toTopOf="@id/spd"
+        app:layout_constraintBottom_toBottomOf="@id/spd"
+        app:layout_constraintStart_toStartOf="@id/statSatk"
+        style="@style/number"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
