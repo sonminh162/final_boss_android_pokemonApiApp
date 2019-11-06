@@ -8,12 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-<!--    android:fontFamily="sans-serif"-->
-<!--    android:textColor="@color/dark_blue"-->
-<!--    android:textSize="12sp"-->
-
     <style name="font">
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/dark_blue</item>
         <item name="android:textSize">12sp</item>
     </style>
@@ -21,6 +17,24 @@
     <style name="number">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="button_style">
+        <item name="android:layout_width">110dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/button_box</item>
+        <item name="android:textColor">@color/white_two</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="button_style_unselected">
+        <item name="android:layout_width">110dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/button_box_unselected</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
 </resources>

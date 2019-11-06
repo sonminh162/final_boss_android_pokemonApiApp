@@ -10,4 +10,8 @@
     <string name="sdef">SDEF</string>
     <string name="spd">SPD</string>
     <string name="_000">000</string>
+    <string name="stats">STATS</string>
+    <string name="moves">MOVES</string>
+    <string name="evolution">EVOLUTION</string>
+    <string name="enter_pokemon_name">Enter Pokemon Name</string>
 </resources>
