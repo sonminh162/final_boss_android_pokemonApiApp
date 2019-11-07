@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -20,10 +21,10 @@ import com.lifetime.pokemonapi_app.fragment.MoveFragment;
 import com.lifetime.pokemonapi_app.fragment.StatFragment;
 import com.lifetime.pokemonapi_app.utils.Utils;
 import com.lifetime.pokemonapi_app.viewmodel.PokemonDescriptionViewModel;
+import com.lifetime.pokemonapi_app.viewmodel.PokemonImageViewModel;
 import com.lifetime.pokemonapi_app.viewmodel.PokemonNameViewModel;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -36,10 +37,11 @@ public class PokemonInformationActivity extends AppCompatActivity {
 
     ImageView pokemonView;
 
-    String baseUrlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+//    String baseUrlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
     PokemonNameViewModel pokemonNameViewModel;
     PokemonDescriptionViewModel pokemonDescriptionViewModel;
+    PokemonImageViewModel pokemonImageViewModel;
 
     String searchKey;
 
@@ -57,15 +59,19 @@ public class PokemonInformationActivity extends AppCompatActivity {
 
         pokemonNameViewModel = ViewModelProviders.of(this).get(PokemonNameViewModel.class);
         pokemonDescriptionViewModel = ViewModelProviders.of(this).get(PokemonDescriptionViewModel.class);
+        pokemonImageViewModel = ViewModelProviders.of(this).get(PokemonImageViewModel.class);
+        pokemonImageViewModel.init();
         pokemonNameViewModel.init();
         pokemonDescriptionViewModel.init();
 
         if (Utils.isInteger(searchKey)) {
             pokemonNameViewModel.getNameByPokemonId(Integer.parseInt(searchKey));
             pokemonDescriptionViewModel.getDescriptionByPokemonId(Integer.parseInt(searchKey));
+            pokemonImageViewModel.getUrlImageByPokemonId(Integer.parseInt(searchKey));
         } else {
             pokemonNameViewModel.getNameByPokemonName(searchKey);
             pokemonDescriptionViewModel.getDescriptionByPokemonName(searchKey);
+            pokemonImageViewModel.getUrlImageByPokemonName(searchKey);
         }
 
         setUpUI();
@@ -89,10 +95,10 @@ public class PokemonInformationActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 TextView name = findViewById(R.id.title);
                 name.setText(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL,s));
-                String urlString = baseUrlImage+searchKey+".png";
-                Picasso.get()
-                        .load(urlString)
-                        .into(pokemonView);
+//                String urlString = baseUrlImage+searchKey+".png";
+//                Picasso.get()
+//                        .load(urlString)
+//                        .into(pokemonView);
             }
         });
 
@@ -101,6 +107,15 @@ public class PokemonInformationActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 TextView description = findViewById(R.id.description);
                 description.setText(s);
+            }
+        });
+
+        pokemonImageViewModel.urlImageMutableLiveData.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Picasso.get()
+                        .load(s)
+                        .into(pokemonView);
             }
         });
     }

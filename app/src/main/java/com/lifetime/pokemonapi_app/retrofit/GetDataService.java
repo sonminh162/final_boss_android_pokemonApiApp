@@ -1,6 +1,7 @@
 package com.lifetime.pokemonapi_app.retrofit;
 
 import com.lifetime.pokemonapi_app.model.DescriptionApiResponse;
+import com.lifetime.pokemonapi_app.model.ImageResponse;
 import com.lifetime.pokemonapi_app.model.ResultForAll;
 
 import retrofit2.Call;
@@ -21,5 +22,10 @@ public interface GetDataService {
     @GET("pokemon-species/{name}/")
     Call<DescriptionApiResponse> getPokemonDescriptionFromName(@Path("name") String name);
 
+    @GET("pokemon-form/{name}/")
+    Call<ImageResponse> getPokemonImageFromName(@Path("name") String name);
+
+    @GET("pokemon-form/{id}/")
+    Call<ImageResponse> getPokemonImageFromId(@Path("id") int id);
 
 }

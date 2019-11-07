@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,9 @@ public class StatFragment extends Fragment {
     private String searchKey;
 
     private View view;
+
+    ProgressBar progressBar;
+    TextView textViewStat;
 
     public static StatFragment instance(String searchKey) {
         StatFragment statFragment = new StatFragment();
@@ -53,7 +57,7 @@ public class StatFragment extends Fragment {
     }
 
     private void updateViewStats(Stat[] stats) {
-        ProgressBar progressBar = view.findViewById(R.id.hpProgressBar);
+        progressBar = view.findViewById(R.id.hpProgressBar);
         progressBar.setProgress(stats[5].getBaseStat());
         progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.background_progress));
 
@@ -76,6 +80,19 @@ public class StatFragment extends Fragment {
         progressBar = view.findViewById(R.id.spdProgressBar);
         progressBar.setProgress(stats[0].getBaseStat());
         progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.background_progress));
+
+        textViewStat = view.findViewById(R.id.statHp);
+        textViewStat.setText(String.valueOf(stats[5].getBaseStat()));
+        textViewStat = view.findViewById(R.id.statAtk);
+        textViewStat.setText(String.valueOf(stats[4].getBaseStat()));
+        textViewStat = view.findViewById(R.id.statDef);
+        textViewStat.setText(String.valueOf(stats[3].getBaseStat()));
+        textViewStat = view.findViewById(R.id.statSatk);
+        textViewStat.setText(String.valueOf(stats[2].getBaseStat()));
+        textViewStat = view.findViewById(R.id.statSdef);
+        textViewStat.setText(String.valueOf(stats[1].getBaseStat()));
+        textViewStat = view.findViewById(R.id.statSpd);
+        textViewStat.setText(String.valueOf(stats[0].getBaseStat()));
     }
 
 }

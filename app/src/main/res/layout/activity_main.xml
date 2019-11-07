@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="95dp"
         android:layout_width="153dp"
         android:layout_height="153dp"/>
 
