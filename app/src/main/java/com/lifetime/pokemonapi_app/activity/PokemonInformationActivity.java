@@ -37,8 +37,6 @@ public class PokemonInformationActivity extends AppCompatActivity {
 
     ImageView pokemonView;
 
-//    String baseUrlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
-
     PokemonNameViewModel pokemonNameViewModel;
     PokemonDescriptionViewModel pokemonDescriptionViewModel;
     PokemonImageViewModel pokemonImageViewModel;
@@ -94,11 +92,7 @@ public class PokemonInformationActivity extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
                 TextView name = findViewById(R.id.title);
-                name.setText(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL,s));
-//                String urlString = baseUrlImage+searchKey+".png";
-//                Picasso.get()
-//                        .load(urlString)
-//                        .into(pokemonView);
+                name.setText(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s));
             }
         });
 
