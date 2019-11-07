@@ -9,11 +9,24 @@ public class ResultForAll {
     @Expose
     private Stat[] stats;
 
+    @SerializedName("forms")
+    @Expose
+    private Form[] forms;
+
+    @SerializedName("moves")
+    @Expose
+    private Move[] moves;
+
+    public Move[] getMoves() {
+        return moves;
+    }
+
+    public Form[] getForms() {
+        return forms;
+    }
+
     public Stat[] getStats() {
         return stats;
     }
 
-    public void setStats(Stat[] stats) {
-        this.stats = stats;
-    }
 }

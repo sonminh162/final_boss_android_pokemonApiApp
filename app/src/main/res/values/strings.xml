@@ -13,5 +13,6 @@
     <string name="stats">STATS</string>
     <string name="moves">MOVES</string>
     <string name="evolution">EVOLUTION</string>
-    <string name="enter_pokemon_name">Enter Pokemon Name</string>
+    <string name="enter_pokemon_name">Enter Pokemon Name/ID</string>
+    <string name="evolution_information_text">Evolution Information</string>
 </resources>
