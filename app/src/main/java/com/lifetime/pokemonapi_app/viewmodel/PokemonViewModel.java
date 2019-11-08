@@ -15,7 +15,7 @@ import com.lifetime.pokemonapi_app.model.Move;
 import com.lifetime.pokemonapi_app.model.ResultForAll;
 import com.lifetime.pokemonapi_app.model.Sprites;
 import com.lifetime.pokemonapi_app.model.Stat;
-import com.lifetime.pokemonapi_app.retrofit.GetDataService;
+import com.lifetime.pokemonapi_app.retrofit.PokemonApi;
 import com.lifetime.pokemonapi_app.retrofit.RetrofitClientInstance;
 import com.lifetime.pokemonapi_app.utils.Utils;
 
@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class PokemonViewModel extends ViewModel {
 
-    private GetDataService getDataService;
+    private PokemonApi pokemonApi;
 
     public MutableLiveData<Stat[]> statsMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> descriptionMutableLiveData = new MutableLiveData<>();
@@ -36,12 +36,12 @@ public class PokemonViewModel extends ViewModel {
     public MutableLiveData<Boolean> validResult = new MutableLiveData<>();
 
     public void init() {
-        getDataService = RetrofitClientInstance.createService(GetDataService.class);
+        pokemonApi = RetrofitClientInstance.createService(PokemonApi.class);
         validResult.setValue(false);
     }
 
     public void getStats(String name, final Activity context) {
-        getDataService.getPokemon(name).enqueue(new Callback<ResultForAll>() {
+        pokemonApi.getPokemon(name).enqueue(new Callback<ResultForAll>() {
             @Override
             public void onResponse(Call<ResultForAll> call, Response<ResultForAll> response) {
                 ResultForAll resultForAllResponse = response.body();
@@ -61,7 +61,7 @@ public class PokemonViewModel extends ViewModel {
     }
 
     public void getDescription(String name){
-        getDataService.getPokemonDescription(name).enqueue(new Callback<DescriptionApiResponse>() {
+        pokemonApi.getPokemonDescription(name).enqueue(new Callback<DescriptionApiResponse>() {
             @Override
             public void onResponse(Call<DescriptionApiResponse> call, Response<DescriptionApiResponse> response) {
                 DescriptionApiResponse descriptionApiResponse = response.body();
@@ -79,7 +79,7 @@ public class PokemonViewModel extends ViewModel {
     }
 
     public void getUrlImage(String name){
-        getDataService.getPokemonImage(name).enqueue(new Callback<ImageResponse>() {
+        pokemonApi.getPokemonImage(name).enqueue(new Callback<ImageResponse>() {
             @Override
             public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
                 ImageResponse imgResponse = response.body();
@@ -97,7 +97,7 @@ public class PokemonViewModel extends ViewModel {
     }
 
     public void getMoves(String name) {
-        getDataService.getPokemon(name).enqueue(new Callback<ResultForAll>() {
+        pokemonApi.getPokemon(name).enqueue(new Callback<ResultForAll>() {
             @Override
             public void onResponse(Call<ResultForAll> call, Response<ResultForAll> response) {
                 ResultForAll resultForAllResponse = response.body();
@@ -120,7 +120,7 @@ public class PokemonViewModel extends ViewModel {
     }
 
     public void getName(String name) {
-        getDataService.getPokemon(name).enqueue(new Callback<ResultForAll>() {
+        pokemonApi.getPokemon(name).enqueue(new Callback<ResultForAll>() {
             @Override
             public void onResponse(Call<ResultForAll> call, Response<ResultForAll> response) {
                 ResultForAll resultForAllResponse = response.body();

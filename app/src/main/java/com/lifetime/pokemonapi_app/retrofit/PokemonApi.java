@@ -8,7 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface GetDataService {
+public interface PokemonApi {
 
     @GET("pokemon/{key}/")
     Call<ResultForAll> getPokemon(@Path("key") String key);
