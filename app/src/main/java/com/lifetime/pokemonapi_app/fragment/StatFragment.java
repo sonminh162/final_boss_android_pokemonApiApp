@@ -34,19 +34,22 @@ public class StatFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.stat_fragment, container, false);
+        if (view == null) {
+            view = inflater.inflate(R.layout.stat_fragment, container, false);
 
-        PokemonViewModel pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
-        pokemonViewModel.init();
+            PokemonViewModel pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
+            pokemonViewModel.init();
 
-        pokemonViewModel.getStats(searchKey, getActivity());
+            pokemonViewModel.getStats(searchKey, getActivity());
 
-        pokemonViewModel.statsMutableLiveData.observe(this, new Observer<Stat[]>() {
-            @Override
-            public void onChanged(Stat[] stats) {
-                updateViewStats(stats);
-            }
-        });
+            pokemonViewModel.statsMutableLiveData.observe(this, new Observer<Stat[]>() {
+                @Override
+                public void onChanged(Stat[] stats) {
+                    updateViewStats(stats);
+                }
+            });
+
+        }
 
         return view;
     }

@@ -34,19 +34,21 @@ public class MoveFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.move_fragment, container, false);
+        if(view==null){
+            view = inflater.inflate(R.layout.move_fragment, container, false);
 
-        PokemonViewModel pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
-        pokemonViewModel.init();
+            PokemonViewModel pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
+            pokemonViewModel.init();
 
-        pokemonViewModel.getMoves(searchKey);
+            pokemonViewModel.getMoves(searchKey);
 
-        pokemonViewModel.movesMutableLiveData.observe(this, new Observer<String[]>() {
-            @Override
-            public void onChanged(String[] strings) {
-                initView(strings);
-            }
-        });
+            pokemonViewModel.movesMutableLiveData.observe(this, new Observer<String[]>() {
+                @Override
+                public void onChanged(String[] strings) {
+                    initView(strings);
+                }
+            });
+        }
 
         return view;
     }

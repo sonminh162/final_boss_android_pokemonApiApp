@@ -37,6 +37,10 @@ public class PokemonInformationActivity extends AppCompatActivity {
 
     String searchKey;
 
+    MoveFragment moveFragment;
+    StatFragment statFragment;
+    EvolutionFragment evolutionFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +65,9 @@ public class PokemonInformationActivity extends AppCompatActivity {
 
     private void setUpUI() {
 
-        loadFragment(StatFragment.instance(searchKey));
+        initFirstTimeFragment();
+
+        loadFragment(statFragment);
 
         setUpFragmentFeature();
 
@@ -98,6 +104,12 @@ public class PokemonInformationActivity extends AppCompatActivity {
         });
     }
 
+    private void initFirstTimeFragment(){
+        moveFragment = MoveFragment.instance(searchKey);
+        statFragment = StatFragment.instance(searchKey);
+        evolutionFragment = new EvolutionFragment();
+    }
+
     private void setUpFragmentFeature() {
         final List<Button> buttons = new ArrayList<>();
         buttons.add(statBtn);
@@ -112,7 +124,7 @@ public class PokemonInformationActivity extends AppCompatActivity {
                 buttons.get(1).setSelected(false);
                 queryButton(buttons);
 
-                loadFragment(MoveFragment.instance(searchKey));
+                loadFragment(moveFragment);
             }
         });
 
@@ -124,7 +136,7 @@ public class PokemonInformationActivity extends AppCompatActivity {
                 buttons.get(2).setSelected(false);
                 queryButton(buttons);
 
-                loadFragment(StatFragment.instance(searchKey));
+                loadFragment(statFragment);
             }
         });
 
@@ -136,7 +148,7 @@ public class PokemonInformationActivity extends AppCompatActivity {
                 buttons.get(2).setSelected(false);
                 queryButton(buttons);
 
-                loadFragment(new EvolutionFragment());
+                loadFragment(evolutionFragment);
             }
         });
     }
