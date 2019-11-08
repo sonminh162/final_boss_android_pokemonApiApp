@@ -10,22 +10,15 @@ import retrofit2.http.Path;
 
 public interface GetDataService {
 
-    @GET("pokemon/{id}/")
-    Call<ResultForAll> getPokemonFromId(@Path("id") int id);
+    @GET("pokemon/{key}/")
+    Call<ResultForAll> getPokemon(@Path("key") String key);
 
-    @GET("pokemon/{name}/")
-    Call<ResultForAll> getPokemonFromName(@Path("name") String name);
+    @GET("pokemon-species/{key}/")
+    Call<DescriptionApiResponse> getPokemonDescription(@Path("key") String key);
 
-    @GET("pokemon-species/{id}/")
-    Call<DescriptionApiResponse> getPokemonDescriptionFromId(@Path("id") int id);
+    @GET("pokemon-form/{key}/")
+    Call<ImageResponse> getPokemonImage(@Path("key") String key);
 
-    @GET("pokemon-species/{name}/")
-    Call<DescriptionApiResponse> getPokemonDescriptionFromName(@Path("name") String name);
 
-    @GET("pokemon-form/{name}/")
-    Call<ImageResponse> getPokemonImageFromName(@Path("name") String name);
-
-    @GET("pokemon-form/{id}/")
-    Call<ImageResponse> getPokemonImageFromId(@Path("id") int id);
 
 }

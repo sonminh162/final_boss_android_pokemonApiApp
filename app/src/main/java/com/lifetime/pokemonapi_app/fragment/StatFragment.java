@@ -15,8 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.lifetime.pokemonapi_app.R;
 import com.lifetime.pokemonapi_app.model.Stat;
-import com.lifetime.pokemonapi_app.utils.Utils;
-import com.lifetime.pokemonapi_app.viewmodel.PokemonStatViewModel;
+import com.lifetime.pokemonapi_app.viewmodel.PokemonViewModel;
 
 public class StatFragment extends Fragment {
     private String searchKey;
@@ -37,16 +36,12 @@ public class StatFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.stat_fragment, container, false);
 
-        PokemonStatViewModel pokemonStatViewModel = ViewModelProviders.of(this).get(PokemonStatViewModel.class);
-        pokemonStatViewModel.init();
+        PokemonViewModel pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
+        pokemonViewModel.init();
 
-        if (Utils.isInteger(searchKey)) {
-            pokemonStatViewModel.getStatsByPokemonId(Integer.parseInt(searchKey), getActivity());
-        } else {
-            pokemonStatViewModel.getStatsByPokemonName(searchKey, getActivity());
-        }
+        pokemonViewModel.getStats(searchKey, getActivity());
 
-        pokemonStatViewModel.statsMutableLiveData.observe(this, new Observer<Stat[]>() {
+        pokemonViewModel.statsMutableLiveData.observe(this, new Observer<Stat[]>() {
             @Override
             public void onChanged(Stat[] stats) {
                 updateViewStats(stats);
@@ -94,6 +89,5 @@ public class StatFragment extends Fragment {
         textViewStat = view.findViewById(R.id.statSpd);
         textViewStat.setText(String.valueOf(stats[0].getBaseStat()));
     }
-
 }
 //        myViewModel.getStatsByPokemonId(Integer.parseInt(getActivity().getIntent().getExtras().getString("id")));

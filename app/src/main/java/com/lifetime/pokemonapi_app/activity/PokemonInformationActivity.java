@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -19,10 +18,7 @@ import com.lifetime.pokemonapi_app.R;
 import com.lifetime.pokemonapi_app.fragment.EvolutionFragment;
 import com.lifetime.pokemonapi_app.fragment.MoveFragment;
 import com.lifetime.pokemonapi_app.fragment.StatFragment;
-import com.lifetime.pokemonapi_app.utils.Utils;
-import com.lifetime.pokemonapi_app.viewmodel.PokemonDescriptionViewModel;
-import com.lifetime.pokemonapi_app.viewmodel.PokemonImageViewModel;
-import com.lifetime.pokemonapi_app.viewmodel.PokemonNameViewModel;
+import com.lifetime.pokemonapi_app.viewmodel.PokemonViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -37,9 +33,7 @@ public class PokemonInformationActivity extends AppCompatActivity {
 
     ImageView pokemonView;
 
-    PokemonNameViewModel pokemonNameViewModel;
-    PokemonDescriptionViewModel pokemonDescriptionViewModel;
-    PokemonImageViewModel pokemonImageViewModel;
+    PokemonViewModel pokemonViewModel;
 
     String searchKey;
 
@@ -55,22 +49,12 @@ public class PokemonInformationActivity extends AppCompatActivity {
 
         searchKey = Objects.requireNonNull(getIntent().getExtras()).getString(SEARCH_KEY);
 
-        pokemonNameViewModel = ViewModelProviders.of(this).get(PokemonNameViewModel.class);
-        pokemonDescriptionViewModel = ViewModelProviders.of(this).get(PokemonDescriptionViewModel.class);
-        pokemonImageViewModel = ViewModelProviders.of(this).get(PokemonImageViewModel.class);
-        pokemonImageViewModel.init();
-        pokemonNameViewModel.init();
-        pokemonDescriptionViewModel.init();
+        pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
+        pokemonViewModel.init();
 
-        if (Utils.isInteger(searchKey)) {
-            pokemonNameViewModel.getNameByPokemonId(Integer.parseInt(searchKey));
-            pokemonDescriptionViewModel.getDescriptionByPokemonId(Integer.parseInt(searchKey));
-            pokemonImageViewModel.getUrlImageByPokemonId(Integer.parseInt(searchKey));
-        } else {
-            pokemonNameViewModel.getNameByPokemonName(searchKey);
-            pokemonDescriptionViewModel.getDescriptionByPokemonName(searchKey);
-            pokemonImageViewModel.getUrlImageByPokemonName(searchKey);
-        }
+        pokemonViewModel.getName(searchKey);
+        pokemonViewModel.getDescription(searchKey);
+        pokemonViewModel.getUrlImage(searchKey);
 
         setUpUI();
     }
@@ -88,7 +72,7 @@ public class PokemonInformationActivity extends AppCompatActivity {
             }
         });
 
-        pokemonNameViewModel.nameMutableLiveData.observe(this, new Observer<String>() {
+        pokemonViewModel.nameMutableLiveData.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 TextView name = findViewById(R.id.title);
@@ -96,7 +80,7 @@ public class PokemonInformationActivity extends AppCompatActivity {
             }
         });
 
-        pokemonDescriptionViewModel.descriptionMutableLiveData.observe(this, new Observer<String>() {
+        pokemonViewModel.descriptionMutableLiveData.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 TextView description = findViewById(R.id.description);
@@ -104,7 +88,7 @@ public class PokemonInformationActivity extends AppCompatActivity {
             }
         });
 
-        pokemonImageViewModel.urlImageMutableLiveData.observe(this, new Observer<String>() {
+        pokemonViewModel.urlImageMutableLiveData.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 Picasso.get()

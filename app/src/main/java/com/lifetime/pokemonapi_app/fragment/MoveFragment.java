@@ -16,8 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lifetime.pokemonapi_app.R;
 import com.lifetime.pokemonapi_app.adapter.MoveAdapter;
 import com.lifetime.pokemonapi_app.model.MoveInfo;
-import com.lifetime.pokemonapi_app.utils.Utils;
-import com.lifetime.pokemonapi_app.viewmodel.PokemonMovesViewModel;
+import com.lifetime.pokemonapi_app.viewmodel.PokemonViewModel;
 
 import java.util.ArrayList;
 
@@ -37,16 +36,12 @@ public class MoveFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.move_fragment, container, false);
 
-        PokemonMovesViewModel pokemonMovesViewModel = ViewModelProviders.of(this).get(PokemonMovesViewModel.class);
-        pokemonMovesViewModel.init();
+        PokemonViewModel pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
+        pokemonViewModel.init();
 
-        if(Utils.isInteger(searchKey)){
-            pokemonMovesViewModel.getMovesByPokemonId(Integer.parseInt(searchKey));
-        } else {
-            pokemonMovesViewModel.getMovesByPokemonName(searchKey);
-        }
+        pokemonViewModel.getMoves(searchKey);
 
-        pokemonMovesViewModel.movesMutableLiveData.observe(this, new Observer<String[]>() {
+        pokemonViewModel.movesMutableLiveData.observe(this, new Observer<String[]>() {
             @Override
             public void onChanged(String[] strings) {
                 initView(strings);
